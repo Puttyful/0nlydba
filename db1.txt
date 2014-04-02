@@ -1,0 +1,24 @@
+SELECT object_type type, owner, object_name, null column_nam
+e, null column_id, null data_type
+FROM all_objects
+WHERE 	object_type ='TABLE' and object_name not
+ like 'BIN$%' and rownum <=50
+
+ union all
+SELECT object_type type, owner, object_name, null column_
+name, null column_id, null data_type
+FROM all_objects
+WHERE 	object_type ='VIEW' and object_name n
+ot like 'BIN$%' and rownum <=50
+
+ union all
+SELECT object_type type, SYS_CONTEXT('USERENV','CURRENT
+_SCHEMA')  owner, object_name, null colu
+mn_name, null column_id, null data_type
+
+FROM all_objects
+WHERE rownum <=50 and object_name not lik
+e 'BIN$%'  and object_type IN ('PROCEDUR
+E','FUNCTION','PACKAGE')
+
+
